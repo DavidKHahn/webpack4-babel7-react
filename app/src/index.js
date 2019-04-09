@@ -16,4 +16,9 @@ const App = () => {
   );
 };
 
+// check if our base configurations are working
+console.log('process.env.VERSION', process.env.VERSION);
+console.log('process.env.PLATFORM', process.env.PLATFORM);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
 ReactDOM.render(<App />, document.getElementById('app'));
