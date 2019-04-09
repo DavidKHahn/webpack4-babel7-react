@@ -6,10 +6,14 @@ import './myStyles.scss';
 class App extends React.Component {
     state = {
         CaptainKirkBio: {},
+        Foo: null
     };
 
     componentDidMount() {
         this.onGetKirkBio();
+        import(/* webpackChunkName: 'Foo' */ './Foo').then(Foo => {
+            this.setState({ Foo: Foo.default });
+        });
     };
 
     onGetKirkBio = async () => {
@@ -33,7 +37,7 @@ class App extends React.Component {
           };
 
 render() {
-    const { CaptainKirkBio } = this.state;
+    const { CaptainKirkBio, Foo } = this.state;
     return (
         <div className="app">
           <img alt="header" src="/dist/images/header.jpg" className="app-header" />
@@ -50,6 +54,7 @@ render() {
                 <p style={{ wordBreak: 'break-all' }}>{JSON.stringify(CaptainKirkBio)}</p>
             )}
         </section>
+        {Foo ? <Foo /> : <p>Foo is loading</p>}
         </div>
       );
     };
