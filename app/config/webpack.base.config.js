@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const merge = require("webpack-merge");
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = env => {
 const { PLATFORM, VERSION } = env;
@@ -19,7 +20,7 @@ return merge([
             {
               test: /\.scss$/,
               use: [
-                'style-loader',
+                PLATFORM === 'production' ? MiniCssExtractPlugin : 'style-loader',
                 'css-loader',
                 'sass-loader'
               ]
